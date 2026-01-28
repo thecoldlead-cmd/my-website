@@ -1,34 +1,81 @@
 :root {
-    --primary: #2563eb;
-    --dark: #0f172a;
-    --light-bg: #f8fafc;
-    --border: #e2e8f0;
+    --primary: #00d2ff;
+    --secondary: #92fe9d;
+    --bg: #050505;
 }
 
-body { font-family: 'Inter', sans-serif; background: var(--light-bg); margin: 0; }
-.dashboard { display: flex; height: 100vh; }
+body {
+    margin: 0;
+    background: var(--bg);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
 
-.side-nav { width: 240px; background: var(--dark); color: white; padding: 25px 15px; }
-.logo { font-size: 22px; font-weight: bold; margin-bottom: 40px; color: #60a5fa; }
-.side-nav ul { list-style: none; }
-.side-nav li { padding: 12px; margin-bottom: 10px; cursor: pointer; transition: 0.3s; border-radius: 8px; color: #94a3b8; }
-.side-nav li.active, .side-nav li:hover { background: #1e293b; color: white; }
+/* Star Field Animation */
+#stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
+}
 
-.main-area { flex: 1; padding: 30px; overflow-y: auto; }
-.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-.search-box { background: white; border: 1px solid var(--border); padding: 10px 20px; border-radius: 10px; width: 60%; display: flex; align-items: center; }
-.search-box input { border: none; outline: none; margin-left: 10px; width: 100%; font-size: 16px; }
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
-.filter-bar { display: flex; gap: 15px; margin-bottom: 20px; }
-.filter-btn { padding: 10px 20px; border: 1px solid var(--border); background: white; border-radius: 20px; cursor: pointer; transition: 0.2s; }
-.filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+h1 {
+    font-size: 5rem;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: 1s ease;
+}
 
-table { width: 100%; background: white; border-radius: 12px; border-collapse: collapse; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-th, td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border); }
-th { background: #f1f5f9; font-weight: 600; color: #475569; }
+/* Scroll Animation Classes */
+.content-section {
+    padding: 100px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
 
-.status { padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: bold; }
-.verified { background: #dcfce7; color: #166534; }
-.access-btn { background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; }
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 20px;
+    width: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 0.8s ease-out;
+}
 
-.loader { text-align: center; padding: 20px; display: none; }
+.card.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.scroll-indicator {
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--primary), transparent);
+    position: absolute;
+    bottom: 30px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(20px); }
+}
